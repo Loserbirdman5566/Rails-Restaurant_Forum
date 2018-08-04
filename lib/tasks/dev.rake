@@ -15,3 +15,4 @@ namespace :dev do
     puts "now you have #{Restaurant.count} restaurants data"
   end 
 end
+
