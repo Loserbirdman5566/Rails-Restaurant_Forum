@@ -4,7 +4,12 @@ class Admin::CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
-    @category = Category.new
+  # 這裡是new or edit 的form所需要的值，如果有url有id就將form帶入edit，沒有就new。   
+    if params[:id]
+      @category = Category.find(params[:id])
+    else
+      @category = Category.new
+    end
   end
 
   def create
@@ -12,6 +17,18 @@ class Admin::CategoriesController < ApplicationController
     if @category.save
       flash[:notice] = "category was successfully created"
       redirect_to admin_categories_path
+    else
+      @categories = Category.all
+      render :index
+    end
+  end
+
+  def update
+    #找到特定資料,寫入 @category
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      redirect_to admin_categories_path
+      flash[:notice] = 'category was successfully updated'
     else
       @categories = Category.all
       render :index
