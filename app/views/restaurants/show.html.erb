@@ -28,7 +28,7 @@
 <div class="container">
   <div class="row">
       <!-- 顯示與餐廳相關的評論 -->
-      <% @restaurant.comments.each do |comment| %>
+      <% @comments.each do |comment| %>
         <div >
           <h4><%= comment.user.email.split('@').first %></h4>
           <p><%= simple_format comment.content %></p>
