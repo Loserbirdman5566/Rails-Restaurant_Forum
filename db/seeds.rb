@@ -36,6 +36,7 @@ User.create(
   )
 
 puts "Default admin created!"
+puts "now you have #{User.count} Admin data"
 
 
 
